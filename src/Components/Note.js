@@ -1,8 +1,13 @@
 import React from 'react'
+import Delete from './deleteNote'
+import AppContext from '../AppContext'
 
-function Note (props) {
-    const note = props.files.notes.find(note =>
-        note.id === props.match.params.noteId
+class Note extends React.Component {
+    static contextType = AppContext
+    
+    render () {
+        const note = this.context.notes.find(note =>
+        note.id === this.props.match.params.noteId
       )
     return (
         <div>
@@ -10,11 +15,11 @@ function Note (props) {
                 folder={note.folderId}>
                     <h2>{note.name}</h2>
                 <p>{note.modified}</p>
-                <button>Delete Note</button>
+                <Delete />
             </div>
             <p className="content">{note.content}</p>
         </div>
-    )
+    )}
 }
 
 export default Note

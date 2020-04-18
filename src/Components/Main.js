@@ -4,16 +4,14 @@ import Notes from './Notes'
 import Note from './Note'
 
 function Main (props) {
-    const files = props.files
-    const folder = props.folder
     return (
         <div className="main">
                 <Route exact path="/" 
-                render={props => (<Notes {...props} files={files} folder={folder}/>)} />
+                component={Notes} />
                 <Route path="/notes/:noteId" 
-                render={props => {return <Note {...props} files={files} folder={folder}/>}} />
+                component={Note} />
                 <Route path="/folder/:folderId" 
-                render={props => (<Notes {...props} files={files} folder={folder}/>)} />
+                component={Notes} />
         </div>
     )
 }

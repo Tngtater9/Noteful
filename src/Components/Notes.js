@@ -1,20 +1,26 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {Link, withRouter } from 'react-router-dom'
+import Delete from './deleteNote'
+import AppContext from '../AppContext'
 
-function Notes (props) {
-    let notes = props.files.notes;
-    if (props.folder !== null){
-        notes = notes.filter(note => note.folderId === props.folder)
+class Notes extends React.Component {
+
+    static contextType = AppContext
+
+   render () { 
+    let notes = this.context.notes;
+    if (this.context.isOpen !== null){
+        notes = notes.filter(note => note.folderId === this.context.isOpen)
     }
     notes = notes.map(note => {
         return(
             <div className="noteList" key={note.id} id={note.id} 
                 folder={note.folderId}>
-                <Link to={`notes/${note.id}`} onClick={() => props.history.push('')}>
+                <Link to={`notes/${note.id}`} onClick={() => this.props.history.push('')}>
                     <h2>{note.name}</h2>
                 </Link>
                 <p>{note.modified}</p>
-                <button>Delete Note</button>
+                <Delete />
             </div> 
         )
     })
@@ -23,9 +29,9 @@ function Notes (props) {
             {notes}
             <button>Add Note</button>
         </div>
-    )
+    )}
 
 
 }
 
-export default Notes
+export default withRouter(Notes)

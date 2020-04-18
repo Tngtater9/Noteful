@@ -1,16 +1,19 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import AppContext from '../AppContext'
 
 class Folders extends React.Component {
+    static contextType = AppContext
+
     render () {
-        const folders = this.props.folders.map(folder =>
+        const folders = this.context.folders.map(folder =>
             {
              return (
+
             <Link to={`/folder/${folder.id}`} key={folder.id} id={folder.id} 
-                onClick={(e) => {this.props.setFolder(folder.id)
-                    this.props.select(e.target)}}
+                onClick={() => this.context.openFolder(folder.id)}
             >
-                <h4 className={folder.id === this.props.openFolder ? "folder selected" : "folder"}>{folder.name}</h4>
+                <h4 className={folder.id === this.context.isOpen ? "folder selected" : "folder"}>{folder.name}</h4>
             </Link>
                 )
             }
