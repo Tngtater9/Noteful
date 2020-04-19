@@ -5,6 +5,10 @@ import AppContext from '../AppContext'
 class Folders extends React.Component {
     static contextType = AppContext
 
+    componentWillMount () {
+        this.context.update();
+    }
+
     render () {
         const folders = this.context.folders.map(folder =>
             {
@@ -21,7 +25,9 @@ class Folders extends React.Component {
 
     return (<div>
             {folders}
+            <Link to='/add-folder'>
             <button>Add Folder</button>
+            </Link>
         </div>)}
 }
 

@@ -27,7 +27,9 @@ class Notes extends React.Component {
     return (
         <div>
             {notes}
-            <button>Add Note</button>
+            <Link to='/add-note'>
+                <button>Add Note</button>
+            </Link>
         </div>
     )}
 

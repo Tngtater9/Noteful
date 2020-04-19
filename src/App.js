@@ -53,8 +53,6 @@ componentWillMount () {
   }
   
 deleteNote = (noteId) => {
-  console.log(this.state)
-
   this.setState({
     ...this.state,
     notes: this.state.notes.filter(note => note.id !== noteId)
@@ -74,13 +72,14 @@ resetFolders = () => {
 }
 
 render (){
-
+  console.log('At App render', this.state)
   const contextValue = {
   openFolder: this.setOpenFolder,
   isOpen: this.state.openFolder,
   folders: this.state.folders,
   notes: this.state.notes,
-  delete: this.deleteNote
+  delete: this.deleteNote,
+  update: this.updateFiles
 };
   
   return (
