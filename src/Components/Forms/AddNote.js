@@ -1,22 +1,47 @@
 import React from 'react'
 import {withRouter} from 'react-router-dom'
-import AppContext from '../AppContext'
+import AppContext from '../../AppContext'
 
 class AddNote extends React.Component {
-    static contextType = AppContext 
+    static contextType = AppContext
+    
+    validateNote = (newNote) => {
+        if(newNote.name.length > 1) {            
+            const doesNoteExist = this.context.notes.filter(note => note.name === newNote.name);
+
+            if(doesNoteExist){
+                const alreadyInTheFolder = doesNoteExist.find(note => note.folderId === newNote.folderId);
+                if (alreadyInTheFolder){
+                    return false;
+                } else {
+                    return true;
+                }
+                
+            } else {
+                return true;
+            }
+        } else {
+            return false
+        } 
+    }
 
     handleSubmit = (e) => {
         e.preventDefault();
         const {noteName, folderId, content} = e.target
+        const newNote = noteName.value.trim();
         const noteId = noteName.value + Math.floor(Math.random() * 10000);
         const note = {
             id: noteId,
-            name: noteName.value,
+            name: newNote,
+            modified: new Date(),
             folderId: folderId.value,
             content: content.value
         }
 
-        fetch('http://localhost:9090/notes', {
+        const isNoteValid = this.validateNote(note);
+
+        if (isNoteValid) {
+            fetch('http://localhost:9090/notes', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -39,6 +64,10 @@ class AddNote extends React.Component {
                 this.props.history.push(`/`);              
             })
             .catch(err=> console.log(err.message))
+        } else {
+            alert('This name is already taken or cannot be used.')
+            noteName.value = '';
+        }
 
     }
 
@@ -64,11 +93,11 @@ class AddNote extends React.Component {
                             Note Name
                             </label>
                             <input
-                            type='text'
-                            name='noteName'
-                            id='noteName'
-                            placeholder='Title'
-                            required
+                                type='text'
+                                name='noteName'
+                                id='noteName'
+                                placeholder='Title'
+                                required
                             />
                         </div>
                         <div>
@@ -76,9 +105,9 @@ class AddNote extends React.Component {
                             Folder
                             </label>
                             <select
-                            name='folderId'
-                            id='folderId'
-                            required>
+                                name='folderId'
+                                id='folderId'
+                                required>
                                 {folderOptions}
                             </select>
                         </div>

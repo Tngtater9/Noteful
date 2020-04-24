@@ -1,9 +1,22 @@
+*{
+  background-color: rgb(6, 73, 128);
+  box-sizing: border-box;
+  color: goldenrod;
+}
+
 .header {
+  border: steelblue 1px solid;
   text-align: center;
 }
 
 .mainContainer{
   display: flex;
+}
+
+button{
+  background-color: rgb(0, 51, 94);
+  border: steelblue 1px solid;
+  border-radius: 5px;
 }
 
 .sidebar {
@@ -13,9 +26,32 @@
 }
 
 .main{
-  margin: 40px;
+  border-left: steelblue 1px solid;
+  border-right: steelblue 1px solid;
+  border-bottom: steelblue 1px solid;
+  padding: 60px;
+  width: 100%;
+}
+
+.note{
+  border: steelblue 1px solid;
+  display: grid;
+  grid-template-columns: 2;
+  grid-template-rows: 2;
+  padding: 20px
+}
+
+.note > a {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+.note > button {
+  justify-self: end;
 }
 
 .selected{
-  background-color: aquamarine;
+  background-color: skyblue;
 }

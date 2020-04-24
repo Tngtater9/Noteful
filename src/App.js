@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
 import Header from './Components/Header'
-import Sidebar from './Components/Sidebar'
-import Main from './Components/Main'
+import Sidebar from './Components/Sidebar/Sidebar'
+import Main from './Components/Main/Main'
 import AppContext from './AppContext'
 
 class App extends React.Component {
@@ -87,8 +87,9 @@ render (){
     <div className="App">
       <Header reset={this.resetFolders} />
       <div className="mainContainer">
-      <Sidebar />
-      <Main />
+        
+          <Sidebar />
+          <Main />
       </div>
     </div>
   </AppContext.Provider>)

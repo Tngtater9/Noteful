@@ -1,7 +1,8 @@
 import React from 'react'
 import {Link, withRouter } from 'react-router-dom'
+import moment from 'moment'
 import Delete from './deleteNote'
-import AppContext from '../AppContext'
+import AppContext from '../../AppContext'
 
 class Notes extends React.Component {
 
@@ -14,18 +15,18 @@ class Notes extends React.Component {
     }
     notes = notes.map(note => {
         return(
-            <div className="noteList" key={note.id} id={note.id} 
+            <div className="note" key={note.id} id={note.id} 
                 folder={note.folderId}>
                 <Link to={`notes/${note.id}`} onClick={() => this.props.history.push('')}>
                     <h2>{note.name}</h2>
                 </Link>
-                <p>{note.modified}</p>
+                <p>{moment(note.modified).format('MMMM Do YYYY, h:mm a')}</p>
                 <Delete />
             </div> 
         )
     })
     return (
-        <div>
+        <div className="noteList">
             {notes}
             <Link to='/add-note'>
                 <button>Add Note</button>

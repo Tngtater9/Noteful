@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import AppContext from '../AppContext'
+import AppContext from '../../AppContext'
 
 class Folders extends React.Component {
     static contextType = AppContext
@@ -23,7 +23,7 @@ class Folders extends React.Component {
             }
         )
 
-    return (<div>
+    return (<div className="folders">
             {folders}
             <Link to='/add-folder'>
             <button>Add Folder</button>

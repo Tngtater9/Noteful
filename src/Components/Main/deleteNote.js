@@ -1,6 +1,6 @@
 import React from 'react'
 import {withRouter} from 'react-router-dom'
-import AppContext from '../AppContext'
+import AppContext from '../../AppContext'
 
 class deleteNote extends React.Component{
     static contextType = AppContext

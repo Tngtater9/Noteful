@@ -1,26 +1,44 @@
 import React from 'react'
 import {withRouter} from 'react-router-dom'
-import AppContext from '../AppContext'
+import AppContext from '../../AppContext'
 
 class AddFolder extends React.Component {
     static contextType = AppContext
 
+    validateFolder = (newFolder) => {
+        const doesFolderExist = this.context.folders.find(folder => folder.name === newFolder);
+        if(newFolder.name.length > 1){
+            if(doesFolderExist){
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            return false;
+        }
+        
+    }
+
     handleSubmit = (e) => {
         e.preventDefault();
         const {folderName} = e.target;
+        const newFolder = folderName.value.trim();
         const folderId = folderName.value + Math.floor(Math.random() * 10000);
         const folder = {
             id: folderId,
-            name: folderName.value            
+            name: newFolder            
         }
 
-        fetch('http://localhost:9090/folders', {
+        const isFolderValid = this.validateFolder(folder);
+
+        if (isFolderValid) {
+            fetch('http://localhost:9090/folders', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
-              },
+            },
             body: JSON.stringify(folder)
-        })
+            })
             .then(res => {
                 if (!res.ok) {
                     return res.json().then(error => {
@@ -33,9 +51,13 @@ class AddFolder extends React.Component {
                 folderName.value = '';
                 this.context.openFolder(folderId);
                 this.props.history.push(`/folder/${folderId}`);
-                         
+                        
             })
             .catch(err=> console.log(err.message))
+        } else {
+            alert('Folder name taken or cannot be used.');
+            folderName.value = '';
+        }
 
     }
 

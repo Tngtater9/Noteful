@@ -2,7 +2,7 @@ import React from 'react'
 
 function GoBack (props) {
     return(
-        <button onClick={() => props.onGoBack()}>Go Back</button>
+        <button className="backBtn" onClick={() => props.onGoBack()}>Go Back</button>
     )
 }
 
