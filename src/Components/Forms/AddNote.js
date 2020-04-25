@@ -88,7 +88,7 @@ class AddNote extends React.Component {
                 <h2>Create Note</h2>
                 <form className="AddNote_form"
                     onSubmit={(e) => this.handleSubmit(e)}>
-                        <div>
+                        <section>
                             <label htmlFor='noteName'>
                             Note Name
                             </label>
@@ -98,20 +98,24 @@ class AddNote extends React.Component {
                                 id='noteName'
                                 placeholder='Title'
                                 required
+                                aria-label="New note name" 
+                                aria-required="true"
                             />
-                        </div>
-                        <div>
+                        </section>
+                        <section>
                             <label htmlFor='folderId'>
                             Folder
                             </label>
                             <select
                                 name='folderId'
                                 id='folderId'
-                                required>
+                                required
+                                aria-label="The folder the note will be in" 
+                                aria-required="true">
                                 {folderOptions}
                             </select>
-                        </div>
-                        <div>
+                        </section>
+                        <section>
                             <label htmlFor='content'>
                             Notes
                             </label>
@@ -120,8 +124,10 @@ class AddNote extends React.Component {
                             id='content'
                             placeholder='Add notes here.'
                             required
+                            aria-label="The contents of the note" 
+                            aria-required="true"
                             />
-                        </div>
+                        </section>
                         <button type="submit">Add Note</button>
                         <button type="reset" onClick={() => {this.props.history.push('/')}}>Cancel</button>
                 </form>

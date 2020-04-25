@@ -9,7 +9,7 @@ import FormError from '../../ErrorPages/FormError'
 
 function Main () {
     return (
-        <div className="main">
+        <main className="main">
             <MainError>
                 <Route exact path="/" 
                 component={Notes} />
@@ -24,7 +24,7 @@ function Main () {
                 <Route path="/add-note"
                 component={AddNote} />
             </FormError>
-        </div>
+        </main>
     )
 }
 

@@ -5,11 +5,11 @@ import PropTypes from 'prop-types'
 class Header extends React.Component{
     render () {
         return (
-        <div className="header">
+        <header className="header">
             <Link to="/" onClick={()=>this.props.reset()}>
             <h1>Noteful</h1>
             </Link>
-        </div>
+        </header>
     )}
 }
 

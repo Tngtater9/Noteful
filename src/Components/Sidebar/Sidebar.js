@@ -7,7 +7,7 @@ import SidebarError from '../../ErrorPages/SidebarError'
 function Sidebar (props) {
 
     return (
-        <div className="sidebar">
+        <section className="sidebar">
             <SidebarError>
                 <Route exact path="/" 
                 render={() => <Folders folders={props.folders} select={props.select} />} />   
@@ -16,7 +16,7 @@ function Sidebar (props) {
                 <Route path="/notes/:noteId" 
                 render={({history}) => { return <GoBack onGoBack={()=>history.goBack()} />}} />
             </SidebarError>
-        </div>
+        </section>
     )
 }
 

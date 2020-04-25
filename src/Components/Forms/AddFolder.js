@@ -67,7 +67,7 @@ class AddFolder extends React.Component {
                 <h2>Create Folder</h2>
                 <form className="addFolder_form"
                     onSubmit={(e) => this.handleSubmit(e)}>
-                        <div>
+                        <section>
                             <label htmlFor='folderName'>
                             Folder Name
                             </label>
@@ -77,8 +77,10 @@ class AddFolder extends React.Component {
                             id='folderName'
                             placeholder='Enter new folder name'
                             required
+                            aria-label="New folder name" 
+                            aria-required="true"
                             />
-                        </div>
+                        </section>
                         <button type="submit">Add Folder</button>
                         <button type="reset" onClick={() => {this.props.history.push('/')}}>Cancel</button>
                 </form>

@@ -23,12 +23,12 @@ class Folders extends React.Component {
             }
         )
 
-    return (<div className="folders">
+    return (<aside className="folders">
             {folders}
             <Link to='/add-folder'>
             <button>Add Folder</button>
             </Link>
-        </div>)}
+        </aside>)}
 }
 
 export default Folders

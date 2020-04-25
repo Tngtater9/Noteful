@@ -86,11 +86,10 @@ render (){
   <AppContext.Provider value={contextValue}>
     <div className="App">
       <Header reset={this.resetFolders} />
-      <div className="mainContainer">
-        
-          <Sidebar />
-          <Main />
-      </div>
+      <section className="mainContainer">
+        <Sidebar />
+        <Main />
+      </section>
     </div>
   </AppContext.Provider>)
   

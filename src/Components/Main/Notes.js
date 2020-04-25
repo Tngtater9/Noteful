@@ -15,23 +15,23 @@ class Notes extends React.Component {
     }
     notes = notes.map(note => {
         return(
-            <div className="note" key={note.id} id={note.id} 
+            <article className="note" key={note.id} id={note.id} 
                 folder={note.folderId}>
                 <Link to={`notes/${note.id}`} onClick={() => this.props.history.push('')}>
                     <h2>{note.name}</h2>
                 </Link>
                 <p>{moment(note.modified).format('MMMM Do YYYY, h:mm a')}</p>
                 <Delete />
-            </div> 
+            </article> 
         )
     })
     return (
-        <div className="noteList">
+        <section className="noteList">
             {notes}
             <Link to='/add-note'>
                 <button>Add Note</button>
             </Link>
-        </div>
+        </section>
     )}
 
 
