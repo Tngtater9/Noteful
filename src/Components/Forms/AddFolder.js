@@ -30,7 +30,7 @@ class AddFolder extends React.Component {
         const isFolderValid = this.validateFolder(folder);
 
         if (isFolderValid) {
-            fetch('http://localhost:8000/api/folders', {
+            fetch('https://dry-plateau-41724.herokuapp.com/api/folders', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

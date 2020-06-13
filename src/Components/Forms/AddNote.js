@@ -38,7 +38,7 @@ class AddNote extends React.Component {
         const isNoteValid = this.validateNote(note);
 
         if (isNoteValid) {
-            fetch('http://localhost:8000/api/notes', {
+            fetch('https://dry-plateau-41724.herokuapp.com/api/notes', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

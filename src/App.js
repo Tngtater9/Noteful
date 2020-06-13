@@ -16,7 +16,7 @@ constructor(props){
 } 
 
 updateFiles = () =>{
-fetch('http://localhost:8000/api/folders')
+fetch('https://dry-plateau-41724.herokuapp.com/api/folders')
   .then(res => {
     if (res.ok) {
       return res.json();
@@ -31,7 +31,7 @@ fetch('http://localhost:8000/api/folders')
     })
   })
   .catch(err=>console.log(err.message))
-fetch('http://localhost:8000/api/notes')
+fetch('https://dry-plateau-41724.herokuapp.com/api/notes')
   .then(res => {
     if (res.ok) {
       return res.json();
