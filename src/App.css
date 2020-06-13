@@ -1,7 +1,7 @@
 *{
   background-color: rgb(6, 73, 128);
   box-sizing: border-box;
-  color: goldenrod;
+  color: #F4E2AE;
 }
 
 .header {
@@ -53,5 +53,5 @@ button{
 }
 
 .selected{
-  background-color: lightgoldenrodyellow;
+  background-color: goldenrod;
 }

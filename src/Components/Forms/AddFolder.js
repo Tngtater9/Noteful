@@ -6,8 +6,8 @@ class AddFolder extends React.Component {
     static contextType = AppContext
 
     validateFolder = (newFolder) => {
-        const doesFolderExist = this.context.folders.find(folder => folder.name === newFolder);
-        if(newFolder.name.length > 1){
+        const doesFolderExist = this.context.folders.find(folder => folder.folder_name === newFolder.folder_name);
+        if(newFolder.folder_name.length > 1){
             if(doesFolderExist){
                 return false;
             } else {
@@ -23,16 +23,14 @@ class AddFolder extends React.Component {
         e.preventDefault();
         const {folderName} = e.target;
         const newFolder = folderName.value.trim();
-        const folderId = folderName.value + Math.floor(Math.random() * 10000);
         const folder = {
-            id: folderId,
-            name: newFolder            
+            "folder_name": newFolder            
         }
 
         const isFolderValid = this.validateFolder(folder);
 
         if (isFolderValid) {
-            fetch('http://localhost:9090/folders', {
+            fetch('http://localhost:8000/api/folders', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -47,10 +45,10 @@ class AddFolder extends React.Component {
                 }
                 return res.json()
             })
-            .then(() => {
+            .then(folder => {
                 folderName.value = '';
-                this.context.openFolder(folderId);
-                this.props.history.push(`/folder/${folderId}`);
+                this.context.openFolder(folder.id);
+                this.props.history.push(`/folder/${folder.id}`);
                         
             })
             .catch(err=> console.log(err.message))

@@ -8,7 +8,7 @@ class deleteNote extends React.Component{
     removeNote = (e) => {
         const noteId = e.parentNode.id;
 
-        const url = 'http://localhost:9090/notes/' + noteId;
+        const url = 'http://localhost:8000/api/notes/' + noteId;
         fetch(url,
             {method: 'DELETE'})
             .then(()=>{

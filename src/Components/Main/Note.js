@@ -12,8 +12,8 @@ class Note extends React.Component {
       )
     return (
         <section className="noteDetails" key={note.id} id={note.id} 
-            folder={note.folderId}>
-            <h2>{note.name}</h2>
+            folder={note.folder}>
+            <h2>{note.title}</h2>
             <p>{moment(note.modified).format('MMMM Do YYYY, h:mm a')}</p>
             <hr/>
             <p className="content">{note.content}</p>

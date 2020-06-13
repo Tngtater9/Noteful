@@ -17,7 +17,7 @@ class Folders extends React.Component {
             <Link to={`/folder/${folder.id}`} key={folder.id} id={folder.id} 
                 onClick={() => this.context.openFolder(folder.id)}
             >
-                <h4 className={folder.id === this.context.isOpen ? "folder selected" : "folder"}>{folder.name}</h4>
+                <h4 className={folder.id === this.context.isOpen ? "folder selected" : "folder"}>{folder.folder_name}</h4>
             </Link>
                 )
             }

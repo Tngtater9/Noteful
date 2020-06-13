@@ -11,14 +11,14 @@ class Notes extends React.Component {
    render () { 
     let notes = this.context.notes;
     if (this.context.isOpen !== null){
-        notes = notes.filter(note => note.folderId === this.context.isOpen)
+        notes = notes.filter(note => note.folder === this.context.isOpen)
     }
     notes = notes.map(note => {
         return(
             <article className="note" key={note.id} id={note.id} 
-                folder={note.folderId}>
+                folder={note.folder}>
                 <Link to={`notes/${note.id}`} onClick={() => this.props.history.push('')}>
-                    <h2>{note.name}</h2>
+                    <h2>{note.title}</h2>
                 </Link>
                 <p>{moment(note.modified).format('MMMM Do YYYY, h:mm a')}</p>
                 <Delete />

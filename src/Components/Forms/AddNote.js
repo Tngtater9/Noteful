@@ -6,11 +6,11 @@ class AddNote extends React.Component {
     static contextType = AppContext
     
     validateNote = (newNote) => {
-        if(newNote.name.length > 1) {            
-            const doesNoteExist = this.context.notes.filter(note => note.name === newNote.name);
+        if(newNote.title.length > 1) {            
+            const doesNoteExist = this.context.notes.filter(note => note.title === newNote.title);
 
             if(doesNoteExist){
-                const alreadyInTheFolder = doesNoteExist.find(note => note.folderId === newNote.folderId);
+                const alreadyInTheFolder = doesNoteExist.find(note => note.folder === newNote.folder);
                 if (alreadyInTheFolder){
                     return false;
                 } else {
@@ -29,19 +29,16 @@ class AddNote extends React.Component {
         e.preventDefault();
         const {noteName, folderId, content} = e.target
         const newNote = noteName.value.trim();
-        const noteId = noteName.value + Math.floor(Math.random() * 10000);
         const note = {
-            id: noteId,
-            name: newNote,
-            modified: new Date(),
-            folderId: folderId.value,
+            title: newNote,
+            folder: folderId.value,
             content: content.value
         }
 
         const isNoteValid = this.validateNote(note);
 
         if (isNoteValid) {
-            fetch('http://localhost:9090/notes', {
+            fetch('http://localhost:8000/api/notes', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -75,11 +72,11 @@ class AddNote extends React.Component {
         const folderOptions = this.context.folders.map(folder => {
             if(folder.id === this.context.isOpen){
                 return (
-                    <option value={folder.id} selected>{folder.name}</option>
+                    <option value={folder.id} selected>{folder.folder_name}</option>
                 )
             }
             return (
-                <option value={folder.id}>{folder.name}</option>
+                <option value={folder.id}>{folder.folder_name}</option>
             )
         });
 
